@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 import { CheckboxFilterGroup, Title } from "@/components/shared/";
 import { RangeSlider } from "./range-slider";
 import { FiltersReturnProps } from "@/hooks/use-filters";

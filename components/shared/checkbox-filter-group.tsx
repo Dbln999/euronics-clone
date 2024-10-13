@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 import { FilterCheckbox, FilterCheckboxProps } from "@/components/shared";
 import { Input, Skeleton } from "@/components/ui";
 

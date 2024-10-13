@@ -10,7 +10,7 @@ import {
   Skeleton,
 } from "@/components/ui";
 import { useSubCategoriesStore } from "@/store";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 import { useClickAway } from "react-use";
 
 interface Props {

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib";
 import { CategoryLink, Container } from "@/components/shared/";
 import { useCategoriesStore } from "@/store";
 import { Skeleton } from "@/components/ui";
