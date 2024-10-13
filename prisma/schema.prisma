@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  title       String
+  imageUrl    String
+  type        String
+  subCategory SubCategory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SubCategory {
+  id               Int                @id @default(autoincrement())
+  title            String
+  heading          Boolean
+  category         Category           @relation(fields: [categoryId], references: [id])
+  categoryId       Int
+  categoriesOnItem CategoriesOnItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Item {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  description         String
+  price               Float
+  imageUrl            String
+  manufacturer        String
+  screenSize          Int
+  energyRating        String
+  pictureEnhancements String?
+  refreshRate         Int
+  functions           String[]
+
+  categories CategoriesOnItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CategoriesOnItem {
+  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+  subCategoryId Int
+  item          Item        @relation(fields: [itemId], references: [id])
+  itemId        Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@id([itemId, subCategoryId])
+}
+
+model DiscountImagesForCarousel {
+  id       Int    @id @default(autoincrement())
+  imageUrl String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model News {
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String
+  imageUrl String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
